@@ -1,0 +1,307 @@
+:root.light {
+  --bg: #fff8ee;
+  --fg: #333;
+  --card-bg: #fff6e5;
+  --border: #e0d5c7;
+  --hover: #f5f0e8;
+  --accent: #8b7355;
+  --primary: #e67e22;
+  --primary-dark: #d35400;
+  --highlight-bg: #fffb91;
+  --highlight-color: #333;
+}
+:root.dark {
+  --bg: #2a2a2a;
+  --fg: #f1f1f1;
+  --card-bg: #3a3a3a;
+  --border: #4a4a4a;
+  --hover: #454545;
+  --accent: #a0956b;
+  --primary: #e67e22;
+  --primary-dark: #d35400;
+  --highlight-bg: #010000;
+  --highlight-color: #000;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  width: 360px;
+  height: 520px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+header {
+  padding: 12px;
+  background: var(--card-bg);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.section-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  padding-right: 12px; /* ✅ add this */
+}
+
+
+#sections {
+  flex: 1;
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  max-width: 240px;
+}
+
+#sections::-webkit-scrollbar {
+  display: none;
+}
+
+
+#sections button {
+  background: var(--bg);
+  color: var(--fg); /* ✅ add this */
+  border: 1px solid var(--border);
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 0.2s ease;
+  max-width: 80px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+
+#sections button:hover {
+  background: var(--hover);
+}
+
+#sections button.active {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+.section-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding-right: 12px; /* ✅ add this */
+}
+
+
+.btn {
+  background: transparent;
+  color: var(--fg); /* ✅ add this */
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 4px 6px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 28px;
+}
+
+
+.btn:hover {
+  background: var(--hover);
+}
+
+.btn.primary {
+  background: var(--accent);
+  color: white;
+  border-color: var(--accent);
+}
+
+.btn.danger {
+  color: #dc3545;
+  border-color: #dc3545;
+}
+
+.btn.danger:hover {
+  background: #dc3545;
+  color: white;
+}
+
+#font-controls {
+  display: flex;
+  gap: 2px;
+}
+
+main {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  position: relative;
+}
+
+#notes {
+  width: 100%;
+  height: 100%;
+  outline: none;
+  white-space: pre-wrap;
+  font-size: 14px;
+  line-height: 1.5;
+  word-wrap: break-word;
+  
+  padding-bottom: 40px; /* Space for the copy button */
+}
+
+
+#notes mark {
+  background: var(--highlight-bg);
+  color: var(--highlight-color);
+  padding: 0 2px;
+  border-radius: 2px;
+}
+
+/* Ensure links inside highlights are visible */
+#notes mark a {
+  color: var(--highlight-color) !important;
+  text-decoration: underline;
+}
+
+#notes img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin: 4px 0;
+  position: relative;
+  z-index: 1;
+}
+
+/* Add a new rule for image containers */
+#notes div.image-container {
+  position: relative;
+  display: block;
+  margin: 8px 0;
+}
+
+#notes div.image-container::after {
+  content: "";
+  display: block;
+  height: 1px;
+  margin-top: 4px;
+}
+
+.copy-btn {
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+  background: var(--card-bg);
+  color: var(--fg); /* ✅ add this */
+  border: 1px solid var(--border);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  z-index: 200;
+}
+
+
+.copy-btn.copied {
+  background: #2ecc71 !important;
+  transform: scale(1.1);
+  transition: all 0.3s ease;
+}
+
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.hidden { 
+  display: none !important; 
+}
+
+.modal-content {
+  background: var(--bg);
+  padding: 20px;
+  border-radius: 8px;
+  width: 85%;
+  max-width: 300px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  border: 1px solid var(--border);
+}
+
+.modal-content h3 {
+  margin: 0 0 12px 0;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.modal-content input {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  width: 100%;
+  background: var(--bg);
+  color: var(--fg);
+  margin-bottom: 16px;
+}
+
+.modal-content input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.modal-actions .btn {
+  min-width: 60px;
+}
+
+/* Scrollbar styling */
+main::-webkit-scrollbar {
+  width: 6px;
+}
+main::-webkit-scrollbar-track {
+  background: transparent;
+}
+main::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 3px;
+}
+main::-webkit-scrollbar-thumb:hover {
+  background: var(--accent);
+}

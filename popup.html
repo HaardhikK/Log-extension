@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Haddi's Logs :/</title>
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <header>
+    <div class="section-controls">
+      <div id="sections"></div>
+      <div class="section-actions">
+        <button id="add-section" class="btn primary" title="Add section">+</button>
+        <button id="rename-section" class="btn" title="Rename section">✎</button>
+        <button id="delete-section" class="btn danger" title="Delete section">×</button>
+      </div>
+    </div>
+    <div class="toolbar">
+      <button id="highlight" class="btn" title="Highlight selection">🖍️</button>
+      <div id="font-controls">
+        <button id="font-decrease" class="btn" title="Decrease font">A-</button>
+        <button id="font-increase" class="btn" title="Increase font">A+</button>
+      </div>
+      <button id="dark-toggle" class="btn" title="Toggle dark mode">🌓</button>
+      <!-- New Clear Section button -->
+      <button id="clear-section" class="btn danger" title="Clear section">🗑️</button>
+    </div>
+  </header>
+  <main>
+    <div id="notes" contenteditable="true" placeholder="Start typing..."></div>
+  </main>
+  <button id="copy-btn" class="btn copy-btn">Copy</button>
+
+  <!-- Rename modal -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <h3>Rename Section</h3>
+      <input type="text" id="modal-input" placeholder="Enter section name" />
+      <div class="modal-actions">
+        <button id="modal-cancel" class="btn">Cancel</button>
+        <button id="modal-save" class="btn primary">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
